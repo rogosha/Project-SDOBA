@@ -1,0 +1,29 @@
+# Rider
+.idea/
+*.sln.iml
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build
+Project SDOBA/bin/
+Project SDOBA/obj/
+
+# MAUI
+**/Platforms/*/bin/
+**/Platforms/*/obj/
+
+# NuGet
+*.nupkg
+packages/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
