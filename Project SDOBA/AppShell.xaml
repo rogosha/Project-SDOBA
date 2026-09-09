@@ -5,6 +5,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:auth="clr-namespace:Project_SDOBA.Views.Auth"
+    xmlns:main="clr-namespace:Project_SDOBA.Views"
     FlyoutBehavior="Disabled">
 
     <ShellContent
@@ -16,5 +17,10 @@
         Title="Регистрация"
         Route="RegisterPage"
         ContentTemplate="{DataTemplate auth:RegisterPage}" />
+
+    <ShellContent
+        Title="SDOBA"
+        Route="MainPage"
+        ContentTemplate="{DataTemplate main:MainPage}" />
 
 </Shell>

@@ -1,9 +1,89 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Project_SDOBA.Views.MainPage">
-    <ContentPage.Content>
-        
-    </ContentPage.Content>
+<ContentPage
+    x:Class="Project_SDOBA.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="SDOBA">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <HorizontalStackLayout
+            Grid.Row="0"
+            Padding="20"
+            Spacing="10">
+
+            <Label
+                Text="SDOBA"
+                FontFamily="ShareTechMono"
+                FontSize="26"
+                VerticalOptions="Center" />
+
+            <Label
+                Text="CONVERSATIONS"
+                FontFamily="ShareTechMono"
+                FontSize="18"
+                VerticalOptions="Center" />
+            
+            <Button
+                Text="LOGOUT"
+                FontFamily="ShareTechMono"
+                Clicked="OnLogoutClicked"
+                HorizontalOptions="EndAndExpand" />
+
+        </HorizontalStackLayout>
+
+        <CollectionView
+            x:Name="ConversationsList"
+            Grid.Row="1"
+            Margin="20,0">
+
+            <CollectionView.EmptyView>
+                <Label
+                    Text="NO CONVERSATIONS"
+                    FontFamily="ShareTechMono"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Padding="15"
+                        Margin="0,0,0,10">
+
+                        <Grid ColumnDefinitions="Auto,*">
+
+                            <Label
+                                Text="#"
+                                FontFamily="ShareTechMono"
+                                FontSize="20"
+                                Margin="0,0,15,0" />
+
+                            <VerticalStackLayout
+                                Grid.Column="1">
+
+                                <Label
+                                    Text="{Binding Id, StringFormat='CONVERSATION {0}'}"
+                                    FontFamily="ShareTechMono"
+                                    FontSize="18" />
+
+                                <Label
+                                    Text="{Binding UpdatedAt, StringFormat='UPDATED: {0:dd.MM.yyyy HH:mm}'}"
+                                    FontFamily="ShareTechMono"
+                                    FontSize="13" />
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
 </ContentPage>

@@ -51,10 +51,7 @@ public partial class LoginPage : ContentPage
                 "access_token",
                 result.AccessToken);
 
-            await DisplayAlert(
-                "Успешный вход",
-                $"Добро пожаловать, {username}!",
-                "OK");
+            await Shell.Current.GoToAsync("//MainPage");
         }
         catch (HttpRequestException)
         {
