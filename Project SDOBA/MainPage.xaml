@@ -23,13 +23,18 @@
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
-
             <Button
-                x:Name="CounterBtn"
-                Text="Click me" 
+                x:Name="Btn1"
+                Text="Clicked" 
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
+            <StackLayout>
+                <Entry x:Name="nameEntry" FontSize="22" TextChanged="nameEntry_TextChanged" Completed="nameEntry_OnCompleted"/>
+                <Label x:Name="nameLabel" FontSize="22" />
+                <Label x:Name="nameLabelFinal" FontSize="22" />
+            </StackLayout>
+            
         </VerticalStackLayout>
     </ScrollView>
 

@@ -14,10 +14,23 @@ public partial class MainPage : ContentPage
         count++;
 
         if (count == 1)
-            CounterBtn.Text = $"Clicked {count} time";
+            Btn1.Text = $"Clicked {count} time";
         else
-            CounterBtn.Text = $"Clicked {count} times";
+            Btn1.Text = $"Clicked {count} times";
 
-        SemanticScreenReader.Announce(CounterBtn.Text);
+        SemanticScreenReader.Announce(Btn1.Text);
+    } 
+    void nameEntry_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        nameLabel.Text = nameEntry.Text;
+    }
+    void nameEntry_Completed(object sender, TextChangedEventArgs e)
+    {
+        nameLabel.Text = nameEntry.Text;
+    }
+
+    private void nameEntry_OnCompleted(object? sender, EventArgs e)
+    {
+        nameLabelFinal.Text = nameEntry.Text;
     }
 }
