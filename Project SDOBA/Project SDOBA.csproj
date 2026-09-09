@@ -62,4 +62,10 @@
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Controls\" />
+      <Folder Include="DTO\" />
+      <Folder Include="Utils\" />
+    </ItemGroup>
+
 </Project>

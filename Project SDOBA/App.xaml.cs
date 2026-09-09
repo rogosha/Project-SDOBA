@@ -1,16 +1,21 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace Project_SDOBA;
+﻿namespace Project_SDOBA;
 
 public partial class App : Application
 {
     public App()
     {
         InitializeComponent();
-    }
 
-    protected override Window CreateWindow(IActivationState? activationState)
-    {
-        return new Window(new AppShell());
+        MainPage = new AppShell();
+        
+        // MainPage = new ContentPage
+        // {
+        //     Content = new Label
+        //     {
+        //         Text = "SDOBA работает",
+        //         HorizontalOptions = LayoutOptions.Center,
+        //         VerticalOptions = LayoutOptions.Center
+        //     }
+        // };
     }
 }
