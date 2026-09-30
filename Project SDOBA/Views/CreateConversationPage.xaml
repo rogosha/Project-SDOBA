@@ -1,55 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <ContentPage
-    x:Class="Project_SDOBA.Views.MainPage"
+    x:Class="Project_SDOBA.Views.CreateConversationPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="YWKA"
-    NavigationPage.HasNavigationBar="False"
+    Title="NEW CONVERSATION"
     Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="Auto,Auto,*">
+    <Grid RowDefinitions="Auto,Auto,*,Auto">
 
-        <Grid
+        <HorizontalStackLayout
             Grid.Row="0"
             Padding="20"
-            ColumnDefinitions="Auto,*,Auto"
-            ColumnSpacing="15">
+            Spacing="10">
 
-            <Image
-                Grid.Column="0"
-                Source="ywka.png"
-                HeightRequest="32"
-                WidthRequest="80"
-                Aspect="AspectFit"
-                VerticalOptions="Center"
-                SemanticProperties.Description="YWKA" />
+            <Button
+                Text="BACK"
+                FontFamily="ShareTechMono"
+                Clicked="OnBackClicked" />
 
             <Label
-                Grid.Column="1"
-                x:Name="CurrentUserLabel"
-                Text="USER"
+                Text="NEW CONVERSATION"
                 FontFamily="ShareTechMono"
-                FontSize="18"
+                FontSize="20"
                 VerticalOptions="Center" />
 
-            <HorizontalStackLayout
-                Grid.Column="2"
-                Spacing="10">
-
-                <Button
-                    Text="NEW CONVERSATION"
-                    FontFamily="ShareTechMono"
-                    Clicked="OnNewConversationClicked" />
-
-                <Button
-                    Text="LOGOUT"
-                    FontFamily="ShareTechMono"
-                    Clicked="OnLogoutClicked" />
-
-            </HorizontalStackLayout>
-
-        </Grid>
+        </HorizontalStackLayout>
 
         <VerticalStackLayout
             Grid.Row="1"
@@ -57,7 +33,7 @@
             Spacing="10">
 
             <Label
-                Text="NEW CHAT"
+                Text="ADD USERS"
                 FontFamily="ShareTechMono"
                 FontSize="16" />
 
@@ -95,7 +71,7 @@
             </Border>
 
             <Label
-                x:Name="ConversationErrorLabel"
+                x:Name="ErrorLabel"
                 IsVisible="False"
                 FontFamily="ShareTechMono"
                 FontSize="13" />
@@ -103,17 +79,15 @@
         </VerticalStackLayout>
 
         <CollectionView
-            x:Name="ConversationsList"
+            x:Name="MembersList"
             Grid.Row="2"
-            Margin="20,0"
-            SelectionMode="Single"
-            SelectionChanged="OnConversationSelected">
+            Margin="20,0">
 
             <CollectionView.EmptyView>
                 <Label
-                    Text="NO CONVERSATIONS"
+                    Text="NO ADDITIONAL MEMBERS"
                     FontFamily="ShareTechMono"
-                    FontSize="18"
+                    FontSize="16"
                     HorizontalOptions="Center"
                     VerticalOptions="Center" />
             </CollectionView.EmptyView>
@@ -122,40 +96,31 @@
                 <DataTemplate>
 
                     <Border
-                        Padding="15"
+                        Padding="12"
                         Margin="0,0,0,10">
 
-                        <Grid ColumnDefinitions="Auto,*">
+                        <Grid ColumnDefinitions="*,Auto">
 
-                            <Label
-                                Text="#"
-                                FontFamily="ShareTechMono"
-                                FontSize="20"
-                                Margin="0,0,15,0"
-                                VerticalOptions="Center" />
-
-                            <VerticalStackLayout
-                                Grid.Column="1"
-                                Spacing="4">
+                            <VerticalStackLayout>
 
                                 <Label
-                                    Text="{Binding DisplayName}"
+                                    Text="{Binding Username, StringFormat='@{0}'}"
                                     FontFamily="ShareTechMono"
-                                    FontSize="18" />
+                                    FontSize="17" />
 
                                 <Label
-                                    Text="{Binding LastMessage}"
+                                    Text="{Binding Id, StringFormat='ID: {0}'}"
                                     FontFamily="ShareTechMono"
-                                    FontSize="14"
-                                    LineBreakMode="TailTruncation"
-                                    MaxLines="1" />
-
-                                <Label
-                                    Text="{Binding UpdatedAt, StringFormat='UPDATED: {0:dd.MM.yyyy HH:mm}'}"
-                                    FontFamily="ShareTechMono"
-                                    FontSize="11" />
+                                    FontSize="12" />
 
                             </VerticalStackLayout>
+
+                            <Button
+                                Grid.Column="1"
+                                Text="REMOVE"
+                                FontFamily="ShareTechMono"
+                                Clicked="OnRemoveMemberClicked"
+                                CommandParameter="{Binding}" />
 
                         </Grid>
 
@@ -165,6 +130,28 @@
             </CollectionView.ItemTemplate>
 
         </CollectionView>
+
+        <Grid
+            Grid.Row="3"
+            Padding="15"
+            ColumnDefinitions="*,Auto"
+            ColumnSpacing="10">
+
+            <Label
+                x:Name="MembersCountLabel"
+                Grid.Column="0"
+                Text="MEMBERS: 1"
+                FontFamily="ShareTechMono"
+                FontSize="15"
+                VerticalOptions="Center" />
+
+            <Button
+                Grid.Column="1"
+                Text="CREATE"
+                FontFamily="ShareTechMono"
+                Clicked="OnCreateClicked" />
+
+        </Grid>
 
     </Grid>
 

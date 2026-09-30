@@ -17,10 +17,6 @@ public static class MauiProgram
                 fonts.AddFont("Inter-Italic.ttf", "InterMedium");
             });
 
-#if DEBUG
-        builder.Logging.AddDebug();
-#endif
-
         return builder.Build();
     }
-}
+} 

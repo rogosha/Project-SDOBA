@@ -10,7 +10,6 @@ public partial class LoginPage : ContentPage
     public LoginPage()
     {
         InitializeComponent();
-
         _apiService = new ApiService();
     }
 
@@ -47,11 +46,9 @@ public partial class LoginPage : ContentPage
                 return;
             }
 
-            await SecureStorage.SetAsync(
-                "access_token",
-                result.AccessToken);
+            await SecureStorage.SetAsync("access_token", result.AccessToken);
 
-            await Shell.Current.GoToAsync("//MainPage");
+            await Navigation.PushAsync(new MainPage());
         }
         catch (HttpRequestException)
         {
@@ -69,7 +66,7 @@ public partial class LoginPage : ContentPage
 
     private async void OnRegisterClicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//RegisterPage");
+        await Navigation.PushAsync(new RegisterPage());
     }
 
     private void ShowError(string message)
@@ -77,4 +74,5 @@ public partial class LoginPage : ContentPage
         ErrorLabel.Text = message;
         ErrorLabel.IsVisible = true;
     }
+
 }

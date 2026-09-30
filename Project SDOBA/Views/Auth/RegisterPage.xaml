@@ -4,74 +4,87 @@
     x:Class="Project_SDOBA.Views.Auth.RegisterPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="REGISTER">
+    Shell.NavBarIsVisible="False">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30"
-            Spacing="18"
-            VerticalOptions="Center">
+    <Grid>
 
-            <Label
-                Text="SDOBA"
-                FontFamily="ShareTechMono"
-                FontSize="36"
-                HorizontalOptions="Center" />
+        <Grid
+            ColumnDefinitions="*,4*,*"
+            Padding="0,30">
 
-            <Label
-                Text="CREATE ACCOUNT"
-                FontFamily="ShareTechMono"
-                FontSize="22"
-                HorizontalOptions="Center"
-                Margin="0,0,0,20" />
+            <ScrollView Grid.Column="1">
 
-            <Entry
-                x:Name="UsernameEntry"
-                Placeholder="USERNAME"
-                FontFamily="ShareTechMono"
-                ClearButtonVisibility="WhileEditing" />
+                <VerticalStackLayout
+                    Spacing="18"
+                    VerticalOptions="Center">
+                    
 
-            <Entry
-                x:Name="EmailEntry"
-                Placeholder="EMAIL"
-                FontFamily="ShareTechMono"
-                Keyboard="Email"
-                ClearButtonVisibility="WhileEditing" />
+                    <Image
+                        Source="ywka.png"
+                        HeightRequest="80"
+                        Aspect="AspectFit"
+                        SemanticProperties.Description="YWKA"
+                        HorizontalOptions="Center" />
 
-            <Entry
-                x:Name="PasswordEntry"
-                Placeholder="PASSWORD"
-                FontFamily="ShareTechMono"
-                IsPassword="True"
-                ClearButtonVisibility="WhileEditing" />
+                    <Label
+                        Text="CREATE ACCOUNT"
+                        FontFamily="ShareTechMono"
+                        FontSize="22"
+                        HorizontalOptions="Center"
+                        Margin="0,0,0,20" />
 
-            <Entry
-                x:Name="ConfirmPasswordEntry"
-                Placeholder="CONFIRM PASSWORD"
-                FontFamily="ShareTechMono"
-                IsPassword="True"
-                ClearButtonVisibility="WhileEditing" />
+                    <Entry
+                        x:Name="UsernameEntry"
+                        Placeholder="USERNAME"
+                        FontFamily="ShareTechMono"
+                        ClearButtonVisibility="WhileEditing" />
 
-            <Button
-                x:Name="RegisterButton"
-                Text="REGISTER"
-                FontFamily="ShareTechMono"
-                Clicked="OnRegisterClicked"
-                Margin="0,10,0,0" />
+                    <Entry
+                        x:Name="EmailEntry"
+                        Placeholder="EMAIL"
+                        FontFamily="ShareTechMono"
+                        Keyboard="Email"
+                        ClearButtonVisibility="WhileEditing" />
 
-            <Label
-                x:Name="ErrorLabel"
-                TextColor="Red"
-                IsVisible="False"
-                HorizontalTextAlignment="Center" />
+                    <Entry
+                        x:Name="PasswordEntry"
+                        Placeholder="PASSWORD"
+                        FontFamily="ShareTechMono"
+                        IsPassword="True"
+                        ClearButtonVisibility="WhileEditing" />
 
-            <Button
-                Text="ALREADY HAVE AN ACCOUNT? LOGIN"
-                FontFamily="ShareTechMono"
-                Clicked="OnLoginClicked"
-                BackgroundColor="Transparent" />
+                    <Entry
+                        x:Name="ConfirmPasswordEntry"
+                        Placeholder="CONFIRM PASSWORD"
+                        FontFamily="ShareTechMono"
+                        IsPassword="True"
+                        ClearButtonVisibility="WhileEditing" />
 
-        </VerticalStackLayout>
-    </ScrollView>
+                    <Button
+                        x:Name="RegisterButton"
+                        Text="REGISTER"
+                        FontFamily="ShareTechMono"
+                        Clicked="OnRegisterClicked"
+                        Margin="0,10,0,0" />
+
+                    <Label
+                        x:Name="ErrorLabel"
+                        TextColor="Red"
+                        IsVisible="False"
+                        HorizontalTextAlignment="Center" />
+
+                    <Button
+                        Text="ALREADY HAVE AN ACCOUNT? LOGIN"
+                        FontFamily="ShareTechMono"
+                        Clicked="OnLoginClicked"
+                        BackgroundColor="Transparent" />
+
+                </VerticalStackLayout>
+
+            </ScrollView>
+
+        </Grid>
+
+    </Grid>
 
 </ContentPage>

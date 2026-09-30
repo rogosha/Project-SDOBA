@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="Project_SDOBA.Views.ConversationSettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False"
+    Title="CONVERSATION SETTINGS">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto">
+
+        <HorizontalStackLayout
+            Grid.Row="0"
+            Padding="20"
+            Spacing="10">
+
+            <Button
+                Text="BACK"
+                FontFamily="ShareTechMono"
+                Clicked="OnBackClicked" />
+
+            <Label
+                Text="CONVERSATION SETTINGS"
+                FontFamily="ShareTechMono"
+                FontSize="20"
+                VerticalOptions="Center" />
+
+        </HorizontalStackLayout>
+
+        <VerticalStackLayout
+            Grid.Row="1"
+            Padding="20,0,20,15"
+            Spacing="12">
+
+            <Label
+                Text="NAME"
+                FontFamily="ShareTechMono"
+                FontSize="14" />
+
+            <Grid
+                ColumnDefinitions="*,Auto"
+                ColumnSpacing="10">
+
+                <Entry
+                    x:Name="ConversationNameEntry"
+                    Grid.Column="0"
+                    Placeholder="CONVERSATION NAME"
+                    FontFamily="ShareTechMono" />
+
+                <Button
+                    Grid.Column="1"
+                    Text="RENAME"
+                    FontFamily="ShareTechMono"
+                    Clicked="OnRenameConversationClicked" />
+
+            </Grid>
+
+            <Label
+                Text="ADD USER"
+                FontFamily="ShareTechMono"
+                FontSize="14" />
+
+            <Grid
+                ColumnDefinitions="*,Auto"
+                ColumnSpacing="10">
+
+                <Entry
+                    x:Name="AddMemberUsernameEntry"
+                    Grid.Column="0"
+                    Placeholder="USERNAME"
+                    FontFamily="ShareTechMono"
+                    ReturnType="Search" />
+
+                <Button
+                    Grid.Column="1"
+                    Text="ADD"
+                    FontFamily="ShareTechMono"
+                    Clicked="OnAddMemberClicked" />
+
+            </Grid>
+
+            <Label
+                x:Name="ManagementErrorLabel"
+                IsVisible="False"
+                FontFamily="ShareTechMono"
+                FontSize="12" />
+
+        </VerticalStackLayout>
+
+        <CollectionView
+            x:Name="MembersList"
+            Grid.Row="2"
+            Margin="20,0"
+            SelectionMode="None">
+
+            <CollectionView.EmptyView>
+                <Label
+                    Text="NO MEMBERS"
+                    FontFamily="ShareTechMono"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border
+                        Padding="12"
+                        Margin="0,0,0,10">
+
+                        <Grid
+                            ColumnDefinitions="*,Auto"
+                            ColumnSpacing="10">
+
+                            <VerticalStackLayout
+                                VerticalOptions="Center">
+
+                                <Label
+                                    Text="{Binding User.Username}"
+                                    FontFamily="ShareTechMono"
+                                    FontSize="16" />
+
+                                <Label
+                                    Text="{Binding UserId, StringFormat='ID: {0}'}"
+                                    FontFamily="ShareTechMono"
+                                    FontSize="11" />
+
+                            </VerticalStackLayout>
+
+                            <Button
+                                Grid.Column="1"
+                                Text="REMOVE"
+                                FontFamily="ShareTechMono"
+                                FontSize="11"
+                                Padding="8,3"
+                                CommandParameter="{Binding}"
+                                Clicked="OnRemoveMemberClicked"
+                                VerticalOptions="Center" />
+
+                        </Grid>
+
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <Label
+            x:Name="MembersCountLabel"
+            Grid.Row="3"
+            Padding="20,10"
+            Text="MEMBERS: 0"
+            FontFamily="ShareTechMono"
+            FontSize="14"
+            VerticalOptions="Center" />
+
+    </Grid>
+
+</ContentPage>

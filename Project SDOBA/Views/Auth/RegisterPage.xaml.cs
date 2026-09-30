@@ -23,12 +23,27 @@ public partial class RegisterPage : ContentPage
         var password = PasswordEntry.Text;
         var confirmPassword = ConfirmPasswordEntry.Text;
 
-        if (string.IsNullOrWhiteSpace(username) ||
-            string.IsNullOrWhiteSpace(email) ||
-            string.IsNullOrWhiteSpace(password) ||
-            string.IsNullOrWhiteSpace(confirmPassword))
+        if (string.IsNullOrWhiteSpace(username))
         {
-            ShowError("Заполните все поля");
+            ShowError("Введите имя пользователя");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(email))
+        {
+            ShowError("Введите email");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(password))
+        {
+            ShowError("Введите пароль");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(confirmPassword))
+        {
+            ShowError("Подтвердите пароль");
             return;
         }
 
@@ -38,13 +53,8 @@ public partial class RegisterPage : ContentPage
             return;
         }
 
-        if (password.Length < 6)
-        {
-            ShowError("Пароль должен содержать минимум 6 символов");
-            return;
-        }
-
-        RegisterButton.IsEnabled = false;
+        var registerButton = (Button)sender;
+        registerButton.IsEnabled = false;
 
         try
         {
@@ -57,31 +67,45 @@ public partial class RegisterPage : ContentPage
 
             var response = await _apiService.RegisterAsync(request);
 
-            if (!response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
-                ShowError("Не удалось зарегистрировать пользователя");
+                await Navigation.PopAsync();
                 return;
             }
 
-            await Shell.Current.GoToAsync("//LoginPage");
+            var error = await response.Content.ReadAsStringAsync();
+
+            if (string.IsNullOrWhiteSpace(error))
+            {
+                ShowError(
+                    $"Ошибка регистрации: {(int)response.StatusCode} {response.StatusCode}");
+            }
+            else
+            {
+                ShowError(error);
+            }
         }
-        catch (HttpRequestException)
+        catch (HttpRequestException ex)
         {
-            ShowError("Не удалось подключиться к серверу");
+            ShowError(ex.Message);
         }
         catch (TaskCanceledException)
         {
             ShowError("Сервер не отвечает");
         }
+        catch (Exception ex)
+        {
+            ShowError(ex.Message);
+        }
         finally
         {
-            RegisterButton.IsEnabled = true;
+            registerButton.IsEnabled = true;
         }
     }
 
     private async void OnLoginClicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//LoginPage");
+        await Navigation.PopAsync();
     }
 
     private void ShowError(string message)

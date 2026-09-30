@@ -19,8 +19,13 @@
         ContentTemplate="{DataTemplate auth:RegisterPage}" />
 
     <ShellContent
-        Title="SDOBA"
+        Title="YWKA"
         Route="MainPage"
         ContentTemplate="{DataTemplate main:MainPage}" />
+
+    <ShellContent
+        Title="CONVERSATION"
+        Route="ConversationPage"
+        ContentTemplate="{DataTemplate main:ConversationPage}" />
 
 </Shell>

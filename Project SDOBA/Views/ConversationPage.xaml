@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="Project_SDOBA.Views.ConversationPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False"
+    Title="CONVERSATION">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <Grid
+            Grid.Row="0"
+            Padding="20"
+            ColumnDefinitions="Auto,*,Auto"
+            ColumnSpacing="10">
+
+            <Button
+                Grid.Column="0"
+                Text="BACK"
+                FontFamily="ShareTechMono"
+                Clicked="OnBackClicked" />
+
+            <Label
+                x:Name="ConversationTitle"
+                Grid.Column="1"
+                Text="CONVERSATION"
+                FontFamily="ShareTechMono"
+                FontSize="20"
+                VerticalOptions="Center" />
+
+            <Button
+                Grid.Column="2"
+                Text="SETTINGS"
+                FontFamily="ShareTechMono"
+                Clicked="OnSettingsClicked" />
+
+        </Grid>
+
+        <CollectionView
+            x:Name="MessagesList"
+            Grid.Row="1"
+            Margin="20">
+
+            <CollectionView.EmptyView>
+                <Label
+                    Text="NO MESSAGES"
+                    FontFamily="ShareTechMono"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Grid
+                        ColumnDefinitions="*,*"
+                        RowDefinitions="Auto,Auto"
+                        RowSpacing="12"
+                        Margin="0,0,0,12">
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Text="{Binding CreatedAt, StringFormat='{0:dd.MM.yyyy}'}"
+                            FontFamily="ShareTechMono"
+                            FontSize="13"
+                            HorizontalOptions="Center"
+                            IsVisible="{Binding ShowDate}" />
+
+                        <Border
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Padding="10"
+                            Stroke="White"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 10"
+                            HorizontalOptions="Start">
+
+                            <Border.Triggers>
+
+                                <DataTrigger
+                                    TargetType="Border"
+                                    Binding="{Binding IsOwnMessage}"
+                                    Value="True">
+
+                                    <Setter
+                                        Property="Grid.Column"
+                                        Value="1" />
+
+                                    <Setter
+                                        Property="HorizontalOptions"
+                                        Value="End" />
+
+                                </DataTrigger>
+
+                            </Border.Triggers>
+
+                            <Grid
+                                RowDefinitions="Auto,Auto"
+                                ColumnDefinitions="*,Auto"
+                                ColumnSpacing="10"
+                                RowSpacing="5">
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Text="{Binding Sender.Username}"
+                                    FontFamily="ShareTechMono"
+                                    FontSize="12" />
+
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Text="{Binding Content}"
+                                    FontFamily="ShareTechMono"
+                                    FontSize="17"
+                                    LineBreakMode="WordWrap" />
+
+                                <HorizontalStackLayout
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Spacing="5"
+                                    VerticalOptions="End">
+
+                                    <Label
+                                        Text="{Binding CreatedAt, StringFormat='{0:HH:mm}'}"
+                                        FontFamily="ShareTechMono"
+                                        FontSize="11"
+                                        VerticalOptions="End" />
+
+                                    <Button
+                                        Text="DELETE"
+                                        FontFamily="ShareTechMono"
+                                        FontSize="10"
+                                        Padding="6,2"
+                                        Clicked="OnDeleteMessageClicked"
+                                        CommandParameter="{Binding}"
+                                        IsVisible="{Binding IsOwnMessage}" />
+
+                                </HorizontalStackLayout>
+
+                            </Grid>
+
+                        </Border>
+
+                    </Grid>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <Grid
+            Grid.Row="2"
+            Padding="15"
+            ColumnDefinitions="*,Auto">
+
+            <Entry
+                x:Name="MessageEntry"
+                Grid.Column="0"
+                Placeholder="MESSAGE"
+                FontFamily="ShareTechMono" />
+
+            <Button
+                Grid.Column="1"
+                Text="SEND"
+                FontFamily="ShareTechMono"
+                Clicked="OnSendClicked"
+                Margin="10,0,0,0" />
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>
